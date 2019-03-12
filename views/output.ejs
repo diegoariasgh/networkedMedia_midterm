@@ -1,0 +1,205 @@
+<html lang="en">
+
+<head>
+<meta charset=utf-8 />
+<title>Travel log Proof of Concept</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; text-align: center;font-family: helvetica; font-size: 14px;
+    background-image: url("https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1496170657/new-york-city-skyline-manhattan-dusk-INTERESTNYC0617.jpg?itok=RotKFKUJ");
+
+}
+  #entry {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    border: solid black 1px;
+    width: 60%;
+    border-radius: 25px;
+
+  }
+</style>
+</head>
+
+<body>
+
+  <% for (let i = 0; i < allthedata.length; i++) {%>
+      <br>
+      <div id="entry" >
+        <br>
+        Post by <strong>@<%=allthedata[i].username%></strong> on <span id="date<%=i%>"></span><br>
+        <br>
+
+        <div id='map<%=i%>' style='width: 600px; height: 400px; display: inline-block; position: relative; border: solid black 1px;'></div>
+          <p> I traveled from <%=allthedata[i].origin%> to <%=allthedata[i].destination%>. My trip happened <%=allthedata[i].time%> <%=allthedata[i].time2%> ago, <br> and I stayed for <%=allthedata[i].length%> <%=allthedata[i].length2%>.</p>
+          <p> <strong>Here's what I have to say about my trip: </strong> <%=allthedata[i].comment%>.</p>
+          I am <%=allthedata[i].recommendation%>% likely to recommend the trip!
+          For this trip, I traveled <%=allthedata[i].howtravel%>. The purpose of my trip was <%=allthedata[i].purposetravel%>. <br>
+          I would <%=allthedata[i].partytravel%> this destination for travelers that are looking into partying, and <br> I would <%=allthedata[i].culturetravel%> it for those looking to experience local cultures!
+  <br>
+  <br>
+        </div>
+        <br>
+
+      <% if ((allthedata[i].destination == "Madrid") && (allthedata[i].origin == "New York")) {%>
+
+        <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+        <script>
+      (function() {
+
+        L.mapbox.accessToken = 'pk.eyJ1IjoiZGllZ29hcmlhcyIsImEiOiJjanN3cDNzcHAwazdxNGFxandudGJiano2In0.0ikOeWfN2wIBannKKV3sog';
+        var map = L.mapbox.map('map<%=i%>', 'mapbox.streets')
+            .setView([35.87596410238254, -35.546875], 3)
+            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+        // Start and end points, in x = longitude, y = latitude values
+        var start = { x: -3.7, y: 40 };
+        var end = { x: -74, y: 40 };
+        var generator = new arc.GreatCircle(start, end, { name: 'Madrid to NYC' });
+        var line = generator.Arc(100, { offset: 10 });
+        L.geoJson(line.json()).addTo(map);
+
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDay();
+        document.getElementById("date<%=i%>").innerHTML = d + "/" + m + "/" + y;
+	})();
+        </script>
+    <% }; %>
+
+    <% if ((allthedata[i].destination == "New York") && (allthedata[i].origin == "Madrid")) {%>
+      <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+      <script>
+      (function() {
+
+      L.mapbox.accessToken = 'pk.eyJ1IjoiZGllZ29hcmlhcyIsImEiOiJjanN3cDNzcHAwazdxNGFxandudGJiano2In0.0ikOeWfN2wIBannKKV3sog';
+      var map = L.mapbox.map('map<%=i%>', 'mapbox.streets')
+          .setView([35.87596410238254, -35.546875], 3)
+          .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+      // Start and end points, in x = longitude, y = latitude values
+      var start = { x: -3.7, y: 40 };
+      var end = { x: -74, y: 40 };
+      var generator = new arc.GreatCircle(start, end, { name: 'Madrid to NYC' });
+      var line = generator.Arc(100, { offset: 10 });
+      L.geoJson(line.json()).addTo(map);
+
+      n =  new Date();
+      y = n.getFullYear();
+      m = n.getMonth() + 1;
+      d = n.getDay();
+      document.getElementById("date<%=i%>").innerHTML = d + "/" + m + "/" + y;
+})();
+      </script>
+  <% }; %>
+
+    <% if ((allthedata[i].destination == "Madrid") && (allthedata[i].origin == "Abu Dhabi")) {%>
+      <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+      <script>
+      (function() {
+		  L.mapbox.accessToken = 'pk.eyJ1IjoiZGllZ29hcmlhcyIsImEiOiJjanN3cDNzcHAwazdxNGFxandudGJiano2In0.0ikOeWfN2wIBannKKV3sog';
+		  var map = L.mapbox.map('map<%=i%>', 'mapbox.streets')
+			  .setView([44.887985, 9.921650], 3)
+			  .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+		  // Start and end points, in x = longitude, y = latitude values
+		  var start = { x: 54.377342, y: 24.453884 };
+      var end = { x: -3.7, y: 40 };
+  		var generator = new arc.GreatCircle(start, end, { name: 'Madrid to AD' });
+		  var line = generator.Arc(100, { offset: 10 });
+		  L.geoJson(line.json()).addTo(map);
+
+      n =  new Date();
+      y = n.getFullYear();
+      m = n.getMonth() + 1;
+      d = n.getDay();
+      document.getElementById("date<%=i%>").innerHTML = d + "/" + m + "/" + y;
+		})();
+
+      </script>
+  <% }; %>
+
+  <% if ((allthedata[i].destination == "Abu Dhabi") && (allthedata[i].origin == "Madrid")) {%>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+    <script>
+      (function() {
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGllZ29hcmlhcyIsImEiOiJjanN3cDNzcHAwazdxNGFxandudGJiano2In0.0ikOeWfN2wIBannKKV3sog';
+    var map = L.mapbox.map('map<%=i%>', 'mapbox.streets')
+        .setView([44.887985, 9.921650], 3)
+        .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+    // Start and end points, in x = longitude, y = latitude values
+    var start = { x: 54.377342, y: 24.453884 };
+    var end = { x: -3.7, y: 40 };
+    var generator = new arc.GreatCircle(start, end, { name: 'Madrid to AD' });
+    var line = generator.Arc(100, { offset: 10 });
+    L.geoJson(line.json()).addTo(map);
+
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDay();
+    document.getElementById("date<%=i%>").innerHTML = d + "/" + m + "/" + y;
+})();
+    </script>
+<% }; %>
+<% if ((allthedata[i].destination == "New York") && (allthedata[i].origin == "Abu Dhabi")) {%>
+  <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+  <script>
+    (function() {
+  L.mapbox.accessToken = 'pk.eyJ1IjoiZGllZ29hcmlhcyIsImEiOiJjanN3cDNzcHAwazdxNGFxandudGJiano2In0.0ikOeWfN2wIBannKKV3sog';
+  var map = L.mapbox.map('map<%=i%>', 'mapbox.streets')
+      .setView([44.887985, 9.921650], 3)
+      .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+  // Start and end points, in x = longitude, y = latitude values
+  var start = { x: 54.377342, y: 24.453884 };
+  var end = { x: -74, y: 40 };
+  var generator = new arc.GreatCircle(start, end, { name: 'NY to AD' });
+  var line = generator.Arc(100, { offset: 10 });
+  L.geoJson(line.json()).addTo(map);
+
+  n =  new Date();
+  y = n.getFullYear();
+  m = n.getMonth() + 1;
+  d = n.getDay();
+  document.getElementById("date<%=i%>").innerHTML = d + "/" + m + "/" + y;
+})();
+  </script>
+<% }; %>
+
+<% if ((allthedata[i].destination == "Abu Dhabi") && (allthedata[i].origin == "New York")) {%>
+  <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+  <script>
+    (function() {
+  L.mapbox.accessToken = 'pk.eyJ1IjoiZGllZ29hcmlhcyIsImEiOiJjanN3cDNzcHAwazdxNGFxandudGJiano2In0.0ikOeWfN2wIBannKKV3sog';
+  var map = L.mapbox.map('map<%=i%>', 'mapbox.streets')
+      .setView([44.887985, 9.921650], 3)
+      .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+  // Start and end points, in x = longitude, y = latitude values
+  var start = { x: 54.377342, y: 24.453884 };
+  var end = { x: -74, y: 40 };
+  var generator = new arc.GreatCircle(start, end, { name: 'NY to AD' });
+  var line = generator.Arc(100, { offset: 10 });
+  L.geoJson(line.json()).addTo(map);
+
+  n =  new Date();
+  y = n.getFullYear();
+  m = n.getMonth() + 1;
+  d = n.getDay();
+  document.getElementById("date<%=i%>").innerHTML = d + "/" + m + "/" + y;
+})();
+  </script>
+<% }; %>
+
+<% } %>
+<script>
+
+</script>
+
+</body>
+</html>
