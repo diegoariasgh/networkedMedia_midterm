@@ -1,0 +1,236 @@
+<html>
+<head>
+<style media="screen">
+  .menu{
+    /* margin: 15px 0 0 0; */
+    display: inline-block;
+    float: left;
+    width: 100% }
+    #usrnm{
+      resize: none;
+    }
+    body{
+      background-image: url("https://media.gadventures.com/media-server/cache/68/18/681877d5dff9ecff0353263ee6fa00ae.jpg");
+      text-align: center;
+      font-family: helvetica;
+      font-size: 12px;
+      overflow: hidden;
+    }
+    #wrapper{
+      text-align:center;
+      background: rgba(255, 255, 255, 0.8);
+      width: 600px;
+      border:solid black 1px;
+
+    }
+    #everything{
+      height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+
+    #plane{
+      position: absolute;
+
+ z-index: -1;
+ width: 60px;
+ animation-name: flightPlane;
+  animation-duration: 5s;
+    }
+
+    @keyframes flightPlane {
+      0% {margin-left:300px; margin-top: 600px;};
+      33% {margin-left:50px; margin-top: 600px;};
+      66% {margin-left:200px; margin-top: 300px;};
+      100% {margin-left: -50px; margin-top: -100px;};
+    }
+
+</style>
+
+</head>
+  <body>
+
+    <div id="everything">
+    <div id="wrapper">
+        <div id="formStuff">
+          <br>
+
+        <strong>Where did you travel last?</strong>
+
+          <form method="POST" action="/form">
+            <br>
+            User name:<TEXTAREA id="usrnm" NAME="userName" ROWS=1 COLS=9></TEXTAREA>
+            <br>
+            <br>
+
+            From
+            <select name="origin">
+              <option value="Madrid">Madrid</option>
+              <option value="Abu Dhabi">Abu Dhabi</option>
+              <option value="New York">New York</option>
+            </select>
+          to
+            <select name="destination">
+              <option value="Madrid">Madrid</option>
+              <option value="Abu Dhabi">Abu Dhabi</option>
+              <option value="New York">New York</option>
+            </select>
+            <br>
+            <br>
+
+            How long ago did you visit?
+            <select name="time">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+              </select>
+
+              <select name="time2">
+                  <option>Days</option>
+                  <option>Weeks</option>
+                  <option>Months</option>
+                  <option>Years</option>
+              </select>
+            ago.
+            <br>
+            <br>
+            How long did you stay for?
+            <select name="length">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+              </select>
+
+              <select name="length2">
+                  <option>Days</option>
+                  <option>Weeks</option>
+                  <option>Months</option>
+                  <option>Years</option>
+              </select>
+              <br>
+              <br>
+            What do you have to say about your trip?<br>
+            <TEXTAREA NAME="comment" ROWS=6 COLS=60></TEXTAREA>
+            <br>
+            <br>
+            <div>
+              How likely are you to repeat this trip? <br>
+
+              0 <input type="range" name="repeat" min="0" max="100" onchange="updateTextInput(this.value);">100</input>
+              <textarea id="textInput" name="repeatValue" value="" style="display: none;"></textarea>
+  <br>  <br>
+
+        Tell us more about your trip. Did you travel...?  <br>
+        <INPUT TYPE="radio" NAME="howDidYouTravel" VALUE="solo">
+        Solo!
+        <INPUT TYPE="radio" NAME="howDidYouTravel" VALUE="with friends">
+        With Friends
+        <INPUT TYPE="radio" NAME="howDidYouTravel" VALUE="with family">
+        With Family
+        <BR>
+              <br>
+          What motivated you to travel?  <br>
+          <INPUT TYPE="radio" NAME="purposeOfTrip" VALUE="tourism">
+        Tourism
+          <INPUT TYPE="radio" NAME="purposeOfTrip" VALUE="studying">
+          I was studying
+          <INPUT TYPE="radio" NAME="purposeOfTrip" VALUE="business">
+          Business trip
+          <br><br>
+      Would you recommend this trip to people who want to party?  <br>
+      <INPUT TYPE="radio" NAME="recommendationParty" VALUE="recommend">
+        Yes
+      <INPUT TYPE="radio" NAME="recommendationParty" VALUE="not recommend">
+      No
+          <BR>
+            <br>
+            Would you recommend this trip to people who want to experience local culture?  <br>
+            <INPUT TYPE="radio" NAME="recommendationCulture" VALUE="recommend">
+              Yes
+            <INPUT TYPE="radio" NAME="recommendationCulture" VALUE="not recommend">
+            No
+            <br>
+              <br>
+                <br>
+          <input type="submit">
+          <br>
+            <br>
+        </div>
+</div>
+</div>
+<div id="plane">
+<img width="300px"src="https://purepng.com/public/uploads/large/purepng.com-passenger-airplaneairplane-flight-vehicles-aeroplane-981525175464xlofd.png" alt="plane">
+</div>
+
+
+
+<script>
+
+    function updateTextInput(val) {
+          document.getElementById('textInput').value=val;
+        }
+    function alertMessage(){
+      alert("This is a proof of concept. Accordingly, more trips will be added later")
+
+    }
+
+
+      </script>
+  </body>
+</html>
